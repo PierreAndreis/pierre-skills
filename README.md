@@ -18,6 +18,15 @@ The skill includes:
 
 See [`skills/agent-laboratory/SKILL.md`](skills/agent-laboratory/SKILL.md).
 
+### Truthful TDD
+
+Runs red–green–refactor in vertical behavior slices through public seams. It
+rejects tautological and change-detector tests, defaults to real dependencies,
+defines narrow exceptions for mocks, tests UI through user interactions, and
+reserves E2E coverage for risks smaller tests cannot expose.
+
+See [`skills/truthful-tdd/SKILL.md`](skills/truthful-tdd/SKILL.md).
+
 ## Install
 
 Copy the skill directory into the skills folder used by your agent:
@@ -25,12 +34,14 @@ Copy the skill directory into the skills folder used by your agent:
 ```bash
 git clone https://github.com/PierreAndreis/pierre-skills.git
 cp -R pierre-skills/skills/agent-laboratory ~/.agents/skills/
+cp -R pierre-skills/skills/truthful-tdd ~/.agents/skills/
 ```
 
 For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
 
 ```bash
 cp -R pierre-skills/skills/agent-laboratory "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/truthful-tdd "$CODEX_HOME/skills/"
 ```
 
 Restart the agent or begin a new session after installation so it refreshes its
