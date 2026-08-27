@@ -161,6 +161,9 @@ def command_record(args: argparse.Namespace) -> None:
         "oracle": args.oracle,
         "evidence": args.evidence,
         "case_exceptions": args.case_exception,
+        "ci_evidence": args.ci_evidence,
+        "history_evidence": args.history_evidence,
+        "runtime_evidence": args.runtime_evidence,
     }
     save(manifest, data)
     print(f"recorded {args.path}")
@@ -227,6 +230,9 @@ def build_parser() -> argparse.ArgumentParser:
     record.add_argument("--oracle", required=True)
     record.add_argument("--evidence", required=True)
     record.add_argument("--case-exception", action="append", default=[])
+    record.add_argument("--ci-evidence", action="append", default=[])
+    record.add_argument("--history-evidence", action="append", default=[])
+    record.add_argument("--runtime-evidence", action="append", default=[])
     record.set_defaults(run=command_record)
 
     verify = commands.add_parser("verify", help="require every suite to have a complete assessment")

@@ -1,6 +1,6 @@
 ---
 name: test-suite-auditor
-description: Exhaustively inventories and evaluates every test suite and case for defect sensitivity, oracle independence, flake risk, surface coverage, redundancy, and maintenance value; it can consolidate or delete weak tests after replacement coverage is proven. Use when auditing a repository's tests, finding flaky or tautological tests, reducing test spam, or pruning and merging suites.
+description: Exhaustively evaluates every test suite and case using source inspection, CI jobs, Git history, and machine-readable runtime evidence for defect sensitivity, flake risk, cost, redundancy, and maintenance value; it can consolidate or delete weak tests after replacement coverage is proven. Use when auditing repository tests, finding flaky or tautological tests, reducing CI minutes or test spam, or pruning and merging suites.
 ---
 
 # Test Suite Auditor
@@ -20,12 +20,15 @@ Audit every test, not a sample. A test earns its place by preventing a plausible
 4. Include generated, platform-specific, contract, migration, browser, native, smoke, and E2E suites when they belong to the repository. Exclude vendored dependencies and build output.
 5. Record the exact commands and any suite that cannot be collected. The inventory is complete only when runner listings, configs, and the manifest reconcile.
 
-## 2. Establish runtime evidence
+## 2. Collect CI, history, and runtime evidence
 
-- Run the normal test commands once and record failures, skips, retries, duration, environment, and seed.
-- Use existing CI history when available to identify intermittent failures and slow suites.
+- Inspect existing CI configuration and job history when accessible. Map triggers, matrices, shards, filters, commands, artifacts, outcomes, retries, job duration, and provider-reported usage/minutes to the suites they actually run.
+- Keep test-case time, CI job wall time, and billed runner minutes separate. Mark configured-but-unobserved jobs and missing billing data instead of estimating them as facts.
+- Use Git history to find the feature or bug that introduced a test, co-changing production code, churn, prior flake fixes, quarantines, and deletions. History supports a verdict; it does not prove usefulness by itself.
+- Run the normal test commands once with the runner's machine-readable reporter—prefer JUnit XML—and record failures, skips, retries, duration, environment, and seed. Normalize reports with `scripts/junit_evidence.py <reports...> --output <json>`.
 - Re-run suspicious suites under changed order, seed, concurrency, timezone, locale, and clock where supported. Repeat targeted suites enough to distinguish a pattern; never call “passed repeatedly” proof that flaking is impossible.
 - Separate **observed flakes** from **predicted flake risk**.
+- Reading existing CI is audit-safe. Triggering new remote CI consumes external resources and requires explicit user authorization; local test runs are allowed.
 
 ## 3. Judge every suite and every case
 
@@ -37,6 +40,7 @@ Read each suite completely. For every test case, answer:
 4. Does it cross a valuable integration/E2E surface, or unit-test only a pure function?
 5. What unique protection remains after accounting for broader tests?
 6. Which concrete flake mechanisms exist?
+7. Is it reached in CI, what runtime/minutes does it consume, and what does its history explain?
 
 When safe, run a **sensitivity probe**: reversibly remove or invert the behavior and confirm the test fails for the intended reason. Keep probes out of the final diff. Preserve pre-existing changes and skip probes that would overlap them.
 
@@ -54,7 +58,7 @@ Rate flake risk `low`, `medium`, or `high`, with named mechanisms and confidence
 
 ## 5. Report before pruning
 
-Produce a table with suite, cases reviewed, product surface, verdict, defect prevented, oracle, overlap, observed flakes, predicted mechanisms, confidence, and proposed action. Summarize:
+Produce a table with suite, cases reviewed, CI reachability/job, runtime/minutes, history, product surface, verdict, defect prevented, oracle, overlap, observed flakes, predicted mechanisms, confidence, and proposed action. Summarize:
 
 - protection that would be lost by deletion;
 - broad surfaces with no credible coverage;

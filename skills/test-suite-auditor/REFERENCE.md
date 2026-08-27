@@ -57,6 +57,51 @@ Call these **change detectors** when they mirror implementation and fail on harm
 
 `Low` is a prediction, not a guarantee. Report observed run count, environments, and confidence separately.
 
+## CI evidence
+
+Read workflow files and existing provider history through an authenticated CLI or API when available. Map each suite to:
+
+- jobs, triggers, path filters, matrices, platforms, shards, and conditional steps;
+- the exact command that selects it and whether the job can silently omit it;
+- recent outcomes, retries, cancellations, queue time, execution time, and artifacts;
+- provider-reported usage or billed minutes when exposed.
+
+Do not equate YAML presence with execution. A suite can be configured but unreachable because of filters, conditions, an obsolete command, or an empty shard. Conversely, tests may run through a custom wrapper that static filename discovery misses.
+
+Keep these quantities distinct:
+
+- **test-case seconds:** summed or per-case time from JUnit;
+- **test-step/job wall time:** elapsed CI duration including setup and teardown;
+- **runner usage/minutes:** provider accounting across matrix jobs and operating-system multipliers;
+- **cost:** only when actual pricing or billing data is available.
+
+Triggering or rerunning remote CI changes external state and can consume paid capacity. Inspect existing runs by default; request authorization before dispatching new runs.
+
+## Git history evidence
+
+Use path history, blame, commit messages, issue/PR references, and production/test co-changes to answer:
+
+- Was the test added for a real regression, feature acceptance path, migration, or refactor?
+- Which production behavior changed with it?
+- Does it repeatedly break on harmless refactors or receive flake-only fixes?
+- Was it quarantined, skipped, retried, deleted, or reintroduced?
+- Has its asserted behavior disappeared from the product?
+
+High churn can mean brittleness, active product evolution, or valuable maintenance. Low churn can mean resilience, irrelevance, or that CI never runs the test. Treat history as context requiring source and runtime confirmation.
+
+## Machine-readable runtime evidence
+
+Prefer the test runner's native JUnit XML reporter. Inspect installed runner versions and repository conventions before selecting flags or plugins; do not invent a reporter command. Preserve the raw report and exact command.
+
+Use `scripts/junit_evidence.py` to combine repeated reports. Its normalized output identifies:
+
+- executions, outcomes, skips, failures, errors, and duration per case;
+- cases with mixed pass/fail outcomes across runs;
+- retry/flaky elements emitted by compatible JUnit reporters;
+- slow cases and suites for comparison with CI job time.
+
+JUnit describes observed executions, not suite usefulness. A fast green tautology remains useless; a slow test may be essential. Missing cases can indicate selection filters, discovery failure, a crash before report flush, or a reporter limitation.
+
 ## Redundancy and consolidation
 
 A test is redundant only when another test fails under the same meaningful defect and preserves at least the same public-surface fidelity. Similar names or overlapping lines are not enough.
@@ -86,8 +131,8 @@ If any claimed protection cannot be mapped, classify it `unknown` and investigat
 ## Audit report template
 
 ```md
-| Suite | Cases | Surface | Verdict | Prevents | Oracle | Flake risk | Evidence | Action |
-| --- | ---: | --- | --- | --- | --- | --- | --- | --- |
+| Suite | Cases | CI job/minutes | Runtime | History | Surface | Verdict | Prevents | Oracle | Flake risk | Evidence | Action |
+| --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 ```
 
 Follow with uncovered surfaces, redundant clusters, proposed replacements, deletion gates, runtime evidence, inventory reconciliation, and limitations.

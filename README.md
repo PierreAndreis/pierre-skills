@@ -33,7 +33,9 @@ Inventories every test suite in a repository, judges each suite and case for
 real defect prevention, independent oracles, redundancy, and predicted flake
 risk, then can consolidate or delete weak tests after replacement coverage is
 proven. A bundled manifest tool prevents sample-based audits from claiming
-completion while suites remain unreviewed.
+completion while suites remain unreviewed. Existing CI jobs and Git history can
+add reachability, runtime, retry, churn, and minute-usage evidence; a JUnit
+normalizer combines machine-readable local or CI reports across repeated runs.
 
 See [`skills/test-suite-auditor/SKILL.md`](skills/test-suite-auditor/SKILL.md).
 

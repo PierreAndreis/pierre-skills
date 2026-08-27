@@ -65,3 +65,17 @@ Instead of separate E2E tests for each field on a checkout form:
 - keep one materially different failure journey, such as declined payment with no persisted order;
 - cover field permutations in a route or page integration table;
 - delete E2E variants that add runtime without unique risk coverage.
+
+## CI and history change the verdict
+
+A suite looks redundant beside a newer E2E journey. Before deleting it:
+
+1. CI history shows the suite runs on Windows while the E2E job runs only on Linux.
+2. Git history shows it was added for a Windows path-normalization regression.
+3. JUnit shows it takes 0.4 seconds and has no mixed outcomes across recent reports.
+
+Verdict: keep or move its unique Windows case into an equally faithful Windows integration surface. Similar source coverage did not mean equivalent protection.
+
+## Minutes need denominators
+
+If JUnit reports 12 minutes of test-case time but the CI matrix reports four 20-minute jobs, report both. The 80 runner-minutes include setup, parallel duplication, and teardown; they are not interchangeable with 12 test-minutes. Consolidation should target the measured source of cost without trading away distinct platform coverage.
