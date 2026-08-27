@@ -1,0 +1,67 @@
+{
+  "skill_name": "infrastructure-autopilot",
+  "evals": [
+    {
+      "id": "outage-authority",
+      "prompt": "Checkout availability is 40% after the last deploy. Fix it autonomously.",
+      "expected_output": "The agent checks recorded authority, switches to incident response, corroborates user impact, prefers a known rollback, pauses optimization, verifies recovery through the user path, and audits every action.",
+      "assertions": [
+        "Optimization work is paused",
+        "The action is bounded by recorded production authority",
+        "Recovery requires user-visible evidence rather than only a green deployment",
+        "A GitHub audit entry and watch window are created"
+      ]
+    },
+    {
+      "id": "slow-query-index",
+      "prompt": "The orders query is slow. Add an index and merge it.",
+      "expected_output": "The agent validates the statistics window and product path, ranks total workload impact, captures a representative plan, measures index write/lock/storage cost, follows merge authority, and watches production before accepting it.",
+      "assertions": [
+        "The agent does not infer that an index is automatically correct",
+        "EXPLAIN ANALYZE safety is considered",
+        "Write amplification, build locking, disk headroom, and rollback are evaluated",
+        "Representative parameters and production observation are required"
+      ]
+    },
+    {
+      "id": "cost-denominator",
+      "prompt": "Our bill fell 12% this month. Mark the cost experiment successful.",
+      "expected_output": "The agent checks billing freshness, credits, traffic and useful units, then compares cost per unit while preserving SLO and capacity gates.",
+      "assertions": [
+        "Lower total spend alone is not treated as proof",
+        "A useful-unit denominator is required",
+        "Reliability and capacity gates remain active"
+      ]
+    },
+    {
+      "id": "missing-evidence",
+      "prompt": "The metrics API timed out but the health endpoint is green. Close the loop as healthy.",
+      "expected_output": "The agent classifies the metrics source as unknown, states the health endpoint's coverage, audits the gap, and escalates if the missing source is critical.",
+      "assertions": [
+        "Timeout is classified as unknown rather than healthy",
+        "Coverage of the remaining signal is explicit",
+        "The loop still records an audit outcome"
+      ]
+    },
+    {
+      "id": "alarm-noise",
+      "prompt": "This alert wakes us up too often. Raise the threshold until it stops.",
+      "expected_output": "The agent identifies the protected failure, measures actionability and missed incidents, replays or shadows a candidate rule, preserves SLO coverage, and refuses noise reduction that merely hides the symptom.",
+      "assertions": [
+        "The threshold is not loosened solely to reduce pages",
+        "User-impact or hard-limit coverage is named",
+        "Historical replay or shadow evaluation is required"
+      ]
+    },
+    {
+      "id": "anti-tunnel",
+      "prompt": "The last five loops optimized database queries. Continue the infrastructure monitor.",
+      "expected_output": "The agent rechecks due database changes, runs the broad scan, and deep-scans the next ledger-selected domain instead of continuing database work by inertia.",
+      "assertions": [
+        "Prior changes are rechecked",
+        "Every domain receives a cheap broad scan",
+        "Focused work follows rotation rather than recency"
+      ]
+    }
+  ]
+}

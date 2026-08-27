@@ -53,3 +53,85 @@ Unblock action: comment with the chosen option or approve runbook `<id>`
 ```
 
 Use a stable fingerprint in the issue body and search open issues before creating another. Update the existing issue when the same decision remains unresolved.
+
+## Probe configuration
+
+Commands are argument arrays, never shell strings. Put credentials in the runner's secret store rather than this file.
+
+```json
+{
+  "probes": [
+    {
+      "id": "public-readiness",
+      "command": ["curl", "--fail", "--silent", "--show-error", "https://example.com/ready"],
+      "timeout_seconds": 8,
+      "expected_exit_codes": [0],
+      "max_output_bytes": 2048
+    },
+    {
+      "id": "deployment-state",
+      "command": ["./ops/autopilot/probes/deployment-state"],
+      "timeout_seconds": 20,
+      "require_json": true,
+      "redact_patterns": ["(?i)(account_id=)[^&\\s]+"]
+    }
+  ]
+}
+```
+
+```bash
+python scripts/probe_runner.py probes.json --dry-run
+python scripts/probe_runner.py probes.json --output .autopilot/current/probes.json
+```
+
+Exit code `0` means every probe is healthy, `1` means at least one probe is unhealthy, and `2` means configuration failed or at least one probe is unknown.
+
+## Slow-query ranking
+
+Export a bounded `pg_stat_statements` window as CSV, then rank without emitting SQL text:
+
+```bash
+python scripts/slow_query_rank.py pg-stat-statements.csv \
+  --limit 20 \
+  --output .autopilot/current/slow-queries.json
+```
+
+Use `--include-query` only when the output destination is approved for potentially sensitive SQL text.
+
+## Cost efficiency
+
+Input columns are `period,cost,units` and optional `service`:
+
+```csv
+period,cost,units,service
+2026-07,1200,400000,api
+2026-07,300,400000,database
+2026-08,1100,440000,api
+2026-08,280,440000,database
+```
+
+```bash
+python scripts/cost_efficiency.py cost.csv --output .autopilot/current/cost.json
+```
+
+`units` is the one period-wide denominator and must repeat unchanged on each service-cost row. The tool sums service costs but counts that denominator once, rejecting conflicting values instead of inventing an allocation. The result distinguishes total cost from cost per useful unit; it does not claim savings when the denominator is zero.
+
+## Alarm-quality evidence
+
+Input columns require `alert_id,fired_at,actionable`; optional fields are `acknowledged_at,resolved_at,incident_id,runbook_present`.
+
+```bash
+python scripts/alarm_quality.py alert-events.csv --output .autopilot/current/alarms.json
+```
+
+The output supplies review signals, not automatic permission to loosen or delete an alarm.
+
+## Audit rendering
+
+```bash
+python scripts/render_audit.py .autopilot \
+  --loop-id 20260827T230100Z-000001-0c0ffa \
+  --output .autopilot/current/comment.md
+```
+
+Inspect the rendered Markdown for secrets and misleading health claims before posting it to the control issue.

@@ -63,7 +63,10 @@ Runs a persistent 15-minute infrastructure control loop with explicit merge
 and production authority. It discovers and builds monitors, responds to
 outages through bounded runbooks, improves performance, cost, SQL, capacity,
 and alert quality through measured experiments, and keeps a GitHub issue plus
-machine ledger as its audit trail.
+machine ledger as its audit trail. Twelve directly routed playbooks keep the
+large domain progressively disclosed, while bundled tools handle probe
+execution, loop state, slow-query ranking, cost-per-unit trends, alarm quality,
+audit rendering, and structural validation.
 
 See [`skills/infrastructure-autopilot/SKILL.md`](skills/infrastructure-autopilot/SKILL.md).
 

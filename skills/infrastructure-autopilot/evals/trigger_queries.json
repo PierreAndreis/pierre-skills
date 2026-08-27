@@ -1,0 +1,22 @@
+[
+  {"query":"keep an eye on prod every 15 minutes and fix safe outages while I sleep","should_trigger":true},
+  {"query":"our cloud bill keeps climbing faster than traffic; continuously find and validate savings","should_trigger":true},
+  {"query":"pg_stat_statements shows a few expensive queries; tune them and watch write impact after deploy","should_trigger":true},
+  {"query":"alerts page us constantly but missed yesterday's checkout outage","should_trigger":true},
+  {"query":"set up an autonomous SRE loop for this repo with a GitHub audit issue","should_trigger":true},
+  {"query":"we are near the database connection quota each morning; forecast and fix capacity","should_trigger":true},
+  {"query":"the deploy is causing 20% errors right now, use the approved rollback runbook","should_trigger":true},
+  {"query":"watch the p99 and cost per completed export over time, iterate on improvements","should_trigger":true},
+  {"query":"our scheduled monitor silently stopped writing its state","should_trigger":true},
+  {"query":"please audit infrastructure changes and assign me issues when you need a decision","should_trigger":true},
+  {"query":"make this button animation smoother","should_trigger":false},
+  {"query":"explain what a B-tree index is","should_trigger":false},
+  {"query":"write a one-off SQL query that lists active customers","should_trigger":false},
+  {"query":"deploy this static website once","should_trigger":false},
+  {"query":"review the unit tests in this pull request","should_trigger":false},
+  {"query":"create a GitHub issue for this frontend bug","should_trigger":false},
+  {"query":"optimize this pure Python sorting function","should_trigger":false},
+  {"query":"summarize our AWS invoice PDF","should_trigger":false},
+  {"query":"add a loading skeleton to the dashboard","should_trigger":false},
+  {"query":"tell me whether this PostgreSQL CREATE INDEX syntax is valid","should_trigger":false}
+]
