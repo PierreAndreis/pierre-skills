@@ -27,3 +27,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+The `design` skill is an original synthesis informed in part by the locally
+installed `frontend-design` skill, which is distributed under the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), and by design
+engineering material attributed to Emil Kowalski. The `animation` skill is an
+original synthesis informed by installed skills based on Emil Kowalski's
+[Animations on the Web](https://animations.dev/) course. These skills do not
+reproduce the source skills' templates, lesson text, or code recipes.

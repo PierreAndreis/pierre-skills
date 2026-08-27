@@ -39,6 +39,24 @@ normalizer combines machine-readable local or CI reports across repeated runs.
 
 See [`skills/test-suite-auditor/SKILL.md`](skills/test-suite-auditor/SKILL.md).
 
+### Design
+
+Designs, builds, reviews, and refines production web interfaces through a
+deliberate visual direction, coherent systems, accessible interaction, honest
+responsive behavior, and rendered verification. It can also create a small set
+of structurally distinct working variants when the direction is undecided.
+
+See [`skills/design/SKILL.md`](skills/design/SKILL.md).
+
+### Animation
+
+Decides, specifies, builds, debugs, and reviews purposeful web motion. It
+combines frequency-aware motion decisions with easing and timing craft,
+interruptibility, spatial continuity, reduced-motion variants, frame-budget
+discipline, and real-interface observation.
+
+See [`skills/animation/SKILL.md`](skills/animation/SKILL.md).
+
 ## Install
 
 Copy the skill directory into the skills folder used by your agent:
@@ -48,6 +66,8 @@ git clone https://github.com/PierreAndreis/pierre-skills.git
 cp -R pierre-skills/skills/agent-laboratory ~/.agents/skills/
 cp -R pierre-skills/skills/truthful-tdd ~/.agents/skills/
 cp -R pierre-skills/skills/test-suite-auditor ~/.agents/skills/
+cp -R pierre-skills/skills/design ~/.agents/skills/
+cp -R pierre-skills/skills/animation ~/.agents/skills/
 ```
 
 For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
@@ -56,6 +76,8 @@ For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
 cp -R pierre-skills/skills/agent-laboratory "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/truthful-tdd "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/test-suite-auditor "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/design "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/animation "$CODEX_HOME/skills/"
 ```
 
 Restart the agent or begin a new session after installation so it refreshes its
