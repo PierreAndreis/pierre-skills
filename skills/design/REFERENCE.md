@@ -1,80 +1,68 @@
-# Design Reference
+# Design Shared Contract
 
-## Direction test
+These rules apply across every design playbook.
 
-A useful direction answers five questions:
+## Evidence before taste
 
-1. What job is the user doing?
-2. What must they notice first, second, and last?
-3. What character fits the product: quiet, editorial, utilitarian, technical, playful, luxurious, or another specific posture?
-4. Which concrete choices carry that character?
-5. What single detail makes this surface recognizable without obstructing the task?
+Separate four kinds of evidence:
 
-If the direction can be applied unchanged to an unrelated product, it is not specific enough.
+- **Product evidence:** task success, support requests, search behavior, analytics, errors, and user feedback.
+- **System evidence:** existing tokens, components, brand rules, framework constraints, and neighboring screens.
+- **Rendered evidence:** screenshots, viewport checks, keyboard paths, touch behavior, state transitions, and browser output.
+- **Judgment:** hierarchy, tone, rhythm, optical balance, and distinctiveness.
 
-## Exploration without noise
+Never present judgment as measured fact. Never claim a screen is polished, accessible, responsive, or matched to a reference without observing the relevant output.
 
-Use three variants by default and no more than five. Name the axis each explores. Strong axes include navigation, information density, content sequencing, typography, composition, and interaction model. Weak axes include changing only accent color, radius, or shadow.
+## Priority order
 
-All variants must use the same realistic content, work at the same viewport, and support the same core action. Keep the comparison harness visually neutral. Variant switching is a high-frequency comparison action, so it must be instant.
+When requirements compete, protect them in this order:
 
-## Interface craft checklist
+1. Facts, formulas, units, qualifiers, privacy, and requested behavior.
+2. Task completion, semantics, accessibility, and destructive-action safety.
+3. The host project's routes, framework, primitives, tokens, and interaction conventions.
+4. Information hierarchy and the strongest supported answer.
+5. Responsive composition, content resilience, and performance.
+6. Brand character, visual distinction, and polish.
 
-### Hierarchy and composition
+## State completeness
 
-- The primary action and primary information are unmistakable.
-- Reading order follows visual order and DOM order.
-- Repetition creates rhythm; intentional exceptions create emphasis.
-- Responsive layouts recompose rather than merely shrink.
-- Empty space has a grouping purpose.
+For every interactive surface, account for applicable states:
 
-### Typography
+- default, hover, focus-visible, active, selected, and disabled;
+- loading, skeleton, empty, partial, success, warning, and error;
+- optimistic, queued, retrying, offline, permission-denied, and destructive confirmation;
+- short, typical, long, localized, missing, and user-generated content;
+- light, dark, high-contrast, reduced-motion, narrow, wide, touch, and keyboard contexts.
 
-- Type choices support the product's character and render reliably.
-- The scale is small enough to feel systematic.
-- Body measure and line height remain comfortable at every viewport.
-- Headings avoid awkward single-word wraps where practical.
-- Numbers align with tabular figures in tables, timers, and changing metrics.
+Do not invent states the product cannot enter. Do not omit a real state because it is inconvenient to design.
 
-### Color and surfaces
+## System rules
 
-- Color has semantic jobs; accents are not scattered decoration.
-- Text, controls, and focus indicators have sufficient contrast.
-- Nested radii visually share a center: outer radius approximately equals inner radius plus inset.
-- Elevation uses a consistent light direction and restrained layered shadows.
-- Images on similar-colored backgrounds receive a subtle boundary.
+- Use semantic names such as `text-primary`, `surface-raised`, and `border-subtle`; component-specific raw colors are an escape hatch.
+- Repeated values express a token or a deliberate local relationship. Remove accidental near-duplicates.
+- Keep a component's external layout with its parent; keep its internal rhythm inside the component.
+- Prefer composition and variants over large prop matrices and boolean combinations.
+- Use established accessible primitives for dialogs, menus, selects, comboboxes, tooltips, and focus traps.
+- Preserve DOM order as reading and keyboard order; CSS rearrangement must not create a different story.
 
-### Controls and forms
+## Completion
 
-- Use native semantics and accessible primitives before custom behavior.
-- Labels persist; placeholders are examples, not labels.
-- Errors are specific, adjacent, announced, and do not erase user input.
-- Disabled, busy, success, and destructive states are distinct.
-- Keyboard order, Escape behavior, focus return, and focus trapping are correct.
-- Touch targets are at least 44 by 44 CSS pixels; mobile text inputs use at least 16px text.
-- Hover-only information is also available through focus or touch.
+Design work is complete when:
 
-### Polish and performance
+- the first read, primary action, and information order are unambiguous;
+- the implemented direction is specific enough that it would not fit an unrelated product unchanged;
+- all applicable states have coherent semantics and visuals;
+- narrow and wide layouts recompose without overflow, clipping, broken reading order, or unusable density;
+- keyboard focus, labels, errors, touch targets, contrast, and reduced-motion behavior have been checked;
+- the real interface was rendered after the final material change;
+- remaining risks are named without turning them into false claims.
 
-- Avoid layout shift from images, fonts, state changes, and loading content.
-- Animate only named properties; never use `transition: all`.
-- Use `will-change` only after measuring a real problem.
-- Press feedback is subtle and does not move the hit target.
-- Decorative effects do not compromise scrolling, loading, or input latency.
+## Escalate
 
-## Review order
+Ask one grouped question only when proceeding could change product meaning, brand ownership, customer claims, formulas, privacy, destructive behavior, accessibility policy, or the intended audience. Otherwise inspect the repository, choose the safest coherent default, state the assumption, and continue.
 
-Review in this order because later polish cannot rescue earlier failures:
+## Research basis
 
-1. Task completion and information hierarchy
-2. Accessibility and interaction correctness
-3. Responsive composition and content resilience
-4. Typography, spacing, color, and surfaces
-5. Motion and micro-polish
-6. Performance and implementation consistency
-
-Report only actionable findings. Each should include severity, `file:line`, observed consequence, and the smallest coherent correction. Distinguish code evidence from visual judgment; request or perform a rendered check when code alone cannot establish the result.
-
-## Source lineage
-
-This original synthesis was informed by locally installed `frontend-design`, `emil-design-engineering`, `make-interfaces-feel-better`, and `prototype` skills. It condenses their shared design-engineering ideas rather than reproducing their templates or prose. `frontend-design` is distributed under Apache-2.0. Emil Kowalski's public design and motion work is available at [emilkowal.ski](https://emilkowal.ski/) and [animations.dev](https://animations.dev/).
+- [Vercel design guidance](https://vercel.com/design.md) informed the reader-first framing, evidence hierarchy, continuous-canvas composition, restraint, data-integrity, and rendered-revision rules.
+- [WCAG 2.2 text contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html), and [target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) provide the accessibility baselines.
+- [CSS Color Level 4](https://www.w3.org/TR/css-color-4/#ok-lab) defines OKLab and OKLCH, used here as tools for perceptually organized palettes rather than as substitutes for contrast testing.

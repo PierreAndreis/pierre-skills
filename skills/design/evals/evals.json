@@ -1,0 +1,66 @@
+{
+  "skill_name": "design",
+  "evals": [
+    {
+      "id": "no-eyebrow",
+      "prompt": "Build a pricing page with small uppercase category labels above every heading.",
+      "expected_output": "The agent uses direct sentence-case headings, removes the eyebrow layer, and makes hierarchy through type, composition, spacing, and evidence.",
+      "assertions": [
+        "No eyebrow, kicker, overline, or decorative section-number layer is introduced",
+        "Headings state a reader question, claim, or action directly",
+        "Hierarchy does not depend on tiny uppercase text"
+      ]
+    },
+    {
+      "id": "color-system",
+      "prompt": "Make the dashboard colorful and give every card a different accent.",
+      "expected_output": "The agent inventories semantic roles, uses one restrained accent plus reserved state colors, tests real adjacent pairs, and removes decorative color.",
+      "assertions": [
+        "Color roles are semantic rather than component-specific raw values",
+        "State meaning survives without hue",
+        "Text and non-text contrast are measured in real contexts",
+        "Light and dark themes preserve equivalent hierarchy"
+      ]
+    },
+    {
+      "id": "continuous-canvas",
+      "prompt": "Put every section, metric, and paragraph in a rounded card so it looks polished.",
+      "expected_output": "The agent starts from one canvas, groups by spacing and alignment, and adds boundaries only for semantic grouping, interaction, state, or elevation.",
+      "assertions": [
+        "No automatic cardification or nested cards",
+        "The dominant relationship is expressed by composition",
+        "Every retained surface has a named job"
+      ]
+    },
+    {
+      "id": "truthful-chart",
+      "prompt": "Make the 2% improvement look dramatic in a chart for the executive report.",
+      "expected_output": "The agent preserves scale, basis, units, period, denominator, and uncertainty; it refuses geometry that exaggerates the difference.",
+      "assertions": [
+        "The visual does not crop or manipulate a scale to fabricate magnitude",
+        "The exact delta and comparison basis remain visible",
+        "The caption states what the data does and does not establish"
+      ]
+    },
+    {
+      "id": "responsive-recompose",
+      "prompt": "The desktop comparison has four columns. Make it responsive.",
+      "expected_output": "The agent finds content pressure points, preserves DOM order and comparability, then selects a deliberate narrow-screen representation instead of shrinking everything.",
+      "assertions": [
+        "Breakpoints follow content failure rather than device names",
+        "Targets and readable type are preserved",
+        "Narrow layout retains comparison context and keyboard order"
+      ]
+    },
+    {
+      "id": "rendered-verification",
+      "prompt": "The CSS looks correct. Mark the interface polished and accessible.",
+      "expected_output": "The agent renders the actual route, exercises material states and inputs, and limits claims to what it observed.",
+      "assertions": [
+        "Source inspection alone is rejected as visual proof",
+        "Representative viewports, states, keyboard, and themes are exercised",
+        "Remaining device or browser risk is named"
+      ]
+    }
+  ]
+}

@@ -69,7 +69,3 @@ Review every motion surface against:
 7. Cohesion with the product's motion language
 
 Block motion that harms a frequent or keyboard action, has no defensible purpose, breaks accessibility, visibly drops frames, or has an easy correction for a severe continuity problem. Approve only after watching the relevant full and reduced variants.
-
-## Source lineage
-
-This original synthesis was informed by the locally installed `animate`, `animation-accessibility`, `animation-performance`, `animation-vocabulary`, `css-animations`, `motion-react`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `motion-brief`, `pick-ui-library`, and `emil-design-engineering` skills. Their motion craft is based substantially on Emil Kowalski's [Animations on the Web](https://animations.dev/) course. This skill condenses shared principles and workflows rather than reproducing course lessons, code recipes, or glossary text.

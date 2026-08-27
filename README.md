@@ -41,10 +41,12 @@ See [`skills/test-suite-auditor/SKILL.md`](skills/test-suite-auditor/SKILL.md).
 
 ### Design
 
-Designs, builds, reviews, and refines production web interfaces through a
-deliberate visual direction, coherent systems, accessible interaction, honest
-responsive behavior, and rendered verification. It can also create a small set
-of structurally distinct working variants when the direction is undecided.
+Designs, builds, reviews, and refines production web interfaces through ten
+directly routed craft playbooks. It covers visual direction, semantic color and
+theme systems, typography and copy, layout and surfaces, controls, responsive
+accessibility, data evidence, editorial pages, performance, and rendered QA.
+Direct sentence-case headings replace eyebrow/kicker layers, while behavioral
+evals and a bundled validator preserve the design rules over time.
 
 See [`skills/design/SKILL.md`](skills/design/SKILL.md).
 

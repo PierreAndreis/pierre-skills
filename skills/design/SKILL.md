@@ -1,59 +1,58 @@
 ---
 name: design
-description: Designs, builds, reviews, and refines distinctive production web interfaces with deliberate visual direction, coherent systems, responsive behavior, accessibility, and high-fidelity polish. Use when creating or improving pages, components, forms, dashboards, landing pages, design systems, responsive layouts, or when a UI feels generic, inconsistent, unfinished, or hard to use.
+description: Designs, builds, reviews, and refines distinctive production web interfaces with deliberate composition, rigorous color systems, typography, responsive behavior, accessibility, data presentation, and rendered verification. Use for pages, components, forms, dashboards, reports, landing pages, design systems, visual reviews, or any interface that feels generic, inconsistent, unclear, unfinished, or difficult to use.
 ---
 
 # Design
 
-Make the interface feel intentional before making it decorative. Preserve the product's existing language unless the user asks for a new direction.
+Make the interface communicate before it decorates. Preserve the product's established language unless the user requests a new direction.
+
+## Non-negotiable defaults
+
+- Begin with the user's job, strongest supported answer, and information order.
+- Use sentence-case headings that state the point directly. Omit eyebrows, kickers, overlines, decorative section numbers, and all-caps labels above headings.
+- Establish hierarchy with composition, typography, spacing, and density before adding surfaces or color.
+- Give color semantic work. Default to one restrained accent plus reserved status colors; never scatter accents as decoration.
+- Keep one continuous canvas unless a boundary communicates interaction, selection, warning, contrast, or real grouping.
+- Avoid generic centered hero copy followed by a card grid, repeated metric boxes, nested cards, decorative pills, arbitrary icon tiles, gratuitous gradients, glows, glass, blobs, and ornamental shadows.
+- Use realistic content and preserve facts, qualifiers, units, formulas, states, privacy, and product behavior.
+- Build accessible semantics and touch behavior into the first implementation, not a cleanup pass.
+- Verify the rendered interface. Source inspection alone cannot establish visual quality.
 
 ## Choose the mode
 
 - **Build:** establish direction, implement the complete surface, then verify it.
-- **Refine:** keep the product model and remove the few details making it feel unfinished.
+- **Refine:** preserve the product model and correct the highest-leverage defects.
 - **Review:** inspect and report evidence before editing unless fixes were requested.
-- **Explore:** when direction is genuinely undecided, make three meaningfully different working variants on named axes; do not create cosmetic reskins.
+- **Explore:** build three structurally different variants on named axes; cosmetic reskins do not count.
 
-## Recon before taste
+## Route to the craft playbook
 
-Inspect the actual product, neighboring screens, tokens, primitives, stack, assets, and responsive behavior. Identify:
+Read only the playbooks the task activates, plus [REFERENCE.md](REFERENCE.md) for shared completion rules.
 
-- the user's task, audience, and information priority;
-- established type, spacing, color, radius, elevation, and interaction conventions;
-- constraints such as framework, browser support, performance, and accessibility;
-- what should remain familiar and the one memorable choice this surface can own.
+| Situation | Read |
+| --- | --- |
+| Direction is missing, generic, or structurally undecided | [Visual direction and composition](playbooks/visual-direction.md) |
+| Selecting, repairing, or reviewing a palette or themes | [Color systems](playbooks/color.md) |
+| Type hierarchy, labels, headings, wrapping, or UI copy | [Typography and copy](playbooks/typography-copy.md) |
+| Grid, spacing, density, surfaces, radii, or imagery | [Layout and surfaces](playbooks/layout-surfaces.md) |
+| Buttons, forms, dialogs, menus, states, or component APIs | [Components and controls](playbooks/components-controls.md) |
+| Narrow screens, touch, keyboard, focus, or assistive technology | [Responsive and accessibility](playbooks/responsive-accessibility.md) |
+| Tables, charts, comparisons, metrics, or calculators | [Data and evidence](playbooks/data-evidence.md) |
+| Landing pages, reports, docs, pricing, or narrative pages | [Marketing and editorial](playbooks/marketing-editorial.md) |
+| Layout shift, asset loading, rendering cost, or motion | [Performance and motion](playbooks/performance-motion.md) |
+| Visual QA, review, screenshots, or handoff | [Verification and review](playbooks/verification-review.md) |
 
-Do not ask for facts available in the repository. If the user gives no aesthetic direction, infer one from the product and state it briefly.
+## Working sequence
 
-## State the direction
-
-Write one sentence naming the intended character and the concrete choices that express it. A direction must affect typography, composition, color, surfaces, or imagery—not merely add decoration. Avoid generic defaults, interchangeable card grids, gratuitous gradients, and styling that could belong to any product.
-
-When exploring, vary structural axes such as density, hierarchy, navigation model, content rhythm, or interaction model. Keep the same realistic content and functionality so the comparison is honest. Make switching variants instant and isolate the exploration from production routes.
-
-## Build the system
-
-1. Establish semantic hierarchy and reading order before styling details.
-2. Use a restrained type scale, deliberate line lengths, and tabular numbers where alignment matters.
-3. Define a small token vocabulary; repeated values should express a system, not coincidence.
-4. Use spacing to group meaning. Align optically when mathematical centering looks wrong.
-5. Make surfaces coherent: nested corners should feel concentric; shadows should imply one light source; borders should remain visible in every theme.
-6. Build on semantic HTML and accessible primitives. Preserve keyboard order, visible focus, labels, errors, and at least 44px touch targets.
-7. Design touch-first and enhance hover only for precise pointers. Inputs should not trigger mobile zoom.
-8. Reserve motion for meaningful feedback or spatial continuity. If motion is material, use the `animation` skill.
-
-Prefer the project's existing primitives and dependencies. Do not hand-roll complex focus management, dialogs, selects, or menus when a trusted accessible primitive already exists.
-
-## Refine by leverage
-
-Fix structure before decoration: hierarchy → layout → typography → controls → surfaces → imagery → micro-polish. Look for inconsistent radii, accidental spacing, weak contrast, layout shift, clipped focus, overly broad transitions, dead press states, and responsive breakage. A few coherent corrections beat a blanket restyle.
-
-## Verify the real interface
-
-Run the relevant app and inspect the rendered result, not only the source. Check representative narrow and wide viewports, keyboard navigation, focus visibility, touch behavior, long and empty content, loading and error states, both themes when present, console errors, and layout stability. Compare screenshots when matching a reference. Do not claim visual quality you did not observe.
-
-For the detailed craft checklist, exploration method, and review format, read [REFERENCE.md](REFERENCE.md). For example direction briefs and findings, read [EXAMPLES.md](EXAMPLES.md).
+1. **Recon:** inspect the rendered product, neighboring screens, tokens, primitives, assets, content, states, stack, and responsive behavior.
+2. **Frame:** state one sentence naming the intended character and the concrete choices that carry it.
+3. **Compose:** decide reading order and geometry before selecting components.
+4. **Systematize:** define semantic type, color, spacing, radius, elevation, and state roles; reuse the project's system where it is coherent.
+5. **Implement:** build the complete primary flow and its loading, empty, error, success, disabled, and destructive states.
+6. **Observe:** render representative narrow and wide viewports; use keyboard and touch-equivalent input; inspect light and dark themes when present.
+7. **Refine:** fix the highest-impact systemic defect, render again, and repeat until no known material visual or usability defect remains.
 
 ## Deliver
 
-State the direction, what changed, what you actually verified, and any remaining subjective or device-specific risk. In review mode, cite `file:line` and order findings by user impact.
+State the direction, what changed, what was actually rendered and exercised, and any remaining subjective, browser, device, or content risk. In review mode, cite `file:line`, explain the user consequence, and propose the smallest coherent correction.

@@ -1,0 +1,22 @@
+[
+  {"query":"design a settings page for this repository","should_trigger":true},
+  {"query":"this dashboard feels generic and card-heavy; make it intentional","should_trigger":true},
+  {"query":"build three different interface directions for incident triage","should_trigger":true},
+  {"query":"fix the colors and dark mode contrast in this app","should_trigger":true},
+  {"query":"review the typography, spacing, and hierarchy of this route","should_trigger":true},
+  {"query":"make this form work well on mobile and by keyboard","should_trigger":true},
+  {"query":"turn these benchmark results into an honest comparison page","should_trigger":true},
+  {"query":"the table breaks at 390px and the focus ring is clipped","should_trigger":true},
+  {"query":"create a polished landing page without the usual AI aesthetic","should_trigger":true},
+  {"query":"audit this component library's visual and interaction states","should_trigger":true},
+  {"query":"explain the CSS box model","should_trigger":false},
+  {"query":"optimize this PostgreSQL index","should_trigger":false},
+  {"query":"write alt text for this one supplied image","should_trigger":false},
+  {"query":"fix the business logic in this React hook","should_trigger":false},
+  {"query":"add one unit test for a pure function","should_trigger":false},
+  {"query":"summarize WCAG 2.2","should_trigger":false},
+  {"query":"convert these hex values to RGB","should_trigger":false},
+  {"query":"compress this PNG without changing the interface","should_trigger":false},
+  {"query":"rename this TypeScript variable","should_trigger":false},
+  {"query":"monitor our production infrastructure every 15 minutes","should_trigger":false}
+]
