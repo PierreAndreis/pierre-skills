@@ -27,6 +27,16 @@ small by testing capabilities rather than incidental details.
 
 See [`skills/truthful-tdd/SKILL.md`](skills/truthful-tdd/SKILL.md).
 
+### Test Suite Auditor
+
+Inventories every test suite in a repository, judges each suite and case for
+real defect prevention, independent oracles, redundancy, and predicted flake
+risk, then can consolidate or delete weak tests after replacement coverage is
+proven. A bundled manifest tool prevents sample-based audits from claiming
+completion while suites remain unreviewed.
+
+See [`skills/test-suite-auditor/SKILL.md`](skills/test-suite-auditor/SKILL.md).
+
 ## Install
 
 Copy the skill directory into the skills folder used by your agent:
@@ -35,6 +45,7 @@ Copy the skill directory into the skills folder used by your agent:
 git clone https://github.com/PierreAndreis/pierre-skills.git
 cp -R pierre-skills/skills/agent-laboratory ~/.agents/skills/
 cp -R pierre-skills/skills/truthful-tdd ~/.agents/skills/
+cp -R pierre-skills/skills/test-suite-auditor ~/.agents/skills/
 ```
 
 For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
@@ -42,6 +53,7 @@ For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
 ```bash
 cp -R pierre-skills/skills/agent-laboratory "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/truthful-tdd "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/test-suite-auditor "$CODEX_HOME/skills/"
 ```
 
 Restart the agent or begin a new session after installation so it refreshes its
