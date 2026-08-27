@@ -81,3 +81,23 @@ For “a suspended user cannot create an order”:
 5. **Next slice:** test the active-user success behavior separately.
 
 Mocking the policy service would turn the test into a claim about the mock. Calling a private `canOrder()` helper would bypass the route's identity, middleware, and persistence wiring.
+
+## Feature coverage without spam
+
+For a new purchase capability, use this shape:
+
+- **One E2E acceptance journey:** sign in, add a product, purchase it, and observe confirmation plus order history. This proves the broad product surface.
+- **A few integration cases:** declined payment, invalid inventory, and authorization using the real route, policy, database, and a narrow provider boundary.
+- **Pure unit tests only where earned:** pricing or discount functions whose outputs depend solely on explicit inputs.
+
+Do not add separate E2E tests for every form field, button state, HTTP status, database column, or discount value.
+
+## Bug coverage without spam
+
+If a disabled purchase button reached production:
+
+1. Add a regression case through the existing purchase page or E2E journey and observe it fail on the old code.
+2. Assert that the user can activate the button and complete the purchase—not that a click handler was called.
+3. Keep one regression at the broad seam. Add lower-level tests only if a pure function contains a distinct rule worth specifying.
+
+Every bug leaves a guardrail, but not necessarily a new test file or a new E2E journey.

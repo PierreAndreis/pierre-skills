@@ -20,10 +20,10 @@ See [`skills/agent-laboratory/SKILL.md`](skills/agent-laboratory/SKILL.md).
 
 ### Truthful TDD
 
-Runs red–green–refactor in vertical behavior slices through public seams. It
-rejects tautological and change-detector tests, defaults to real dependencies,
-defines narrow exceptions for mocks, tests UI through user interactions, and
-reserves E2E coverage for risks smaller tests cannot expose.
+Runs integration- and E2E-first red–green–refactor through broad vertical
+surfaces, with unit tests reserved for pure functions. Every bug gets regression
+coverage and every feature gets acceptance coverage, while the suite stays
+small by testing capabilities rather than incidental details.
 
 See [`skills/truthful-tdd/SKILL.md`](skills/truthful-tdd/SKILL.md).
 

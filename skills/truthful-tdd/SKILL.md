@@ -1,18 +1,24 @@
 ---
 name: truthful-tdd
-description: Runs test-driven development in vertical behavior slices with change-sensitive, non-tautological tests through public seams and real dependencies. Use when building or fixing code test-first, choosing unit/integration/UI/E2E coverage, auditing weak tests, or deciding whether a dependency is acceptable to mock.
+description: Runs integration- and E2E-first test-driven development with a small number of broad vertical tests, pure-function unit tests, real dependencies, and non-tautological oracles. Use when building features, fixing bugs test-first, designing acceptance or regression coverage, auditing weak tests, or deciding whether a dependency is acceptable to mock.
 ---
 
 # Truthful TDD
 
-A test tells the truth only when it can disagree with the implementation. Run one vertical red → green → refactor cycle at a time; leave behind executable behavior specifications, not change detectors.
+A test tells the truth only when it can disagree with the implementation. Prefer a few broad integration and E2E tests that cross real product surfaces. Use unit tests only for pure functions.
+
+## Coverage obligations
+
+- **Every bug gets a regression test.** Reproduce it red through the public seam where it escaped, then keep that test permanently.
+- **Every feature gets acceptance coverage.** Prove its main user-visible capability with one integration or E2E journey, adding another only for a materially different risk class.
+- **Coverage stays sparse.** Test capabilities, contracts, and important failures—not every field, branch, component, or implementation detail. Extend an existing broad journey when it remains clear and diagnostic.
 
 ## Start at a vertical seam
 
 1. Read the local test commands, nearby tests, domain vocabulary, and architecture decisions.
 2. State one externally observable behavior and the risk its test must catch.
-3. Choose the narrowest **public seam** that still crosses the real layers responsible for that behavior.
-4. Choose the cheapest test level that can observe it credibly. Prefer a real in-process path; escalate only for risks a smaller test cannot expose.
+3. Choose a stable **public seam** that crosses the largest relevant product surface without pulling in unrelated systems.
+4. Default to an integration test or E2E journey with real dependencies. Use a unit test only when the subject is a pure function: explicit input, explicit output, no I/O, clock, randomness, mutable global state, framework lifecycle, or collaborator behavior.
 
 A seam is an interface a real caller uses: exported API, HTTP route, command, rendered component, message boundary, or persisted workflow. A vertical slice exercises one behavior through that seam and the necessary layers beneath it. It does not test each internal class horizontally.
 
@@ -20,15 +26,15 @@ A seam is an interface a real caller uses: exported API, HTTP route, command, re
 
 ### Red
 
-- Write one focused scenario in domain language with explicit cause and effect.
+- Write one focused capability or regression journey in domain language with explicit cause and effect.
 - Use an independently known expected result: a worked example, specification literal, approved fixture, or separately derived invariant.
-- Run the narrow test and observe the expected failure. Confirm it fails because the behavior is absent or wrong, not because setup, imports, or infrastructure are broken.
+- Run the acceptance or regression test and observe the expected failure. Confirm it fails because the behavior is absent or wrong, not because setup, imports, or infrastructure are broken.
 - Prove sensitivity when doubt remains: temporarily remove or invert the intended behavior and confirm the test goes red.
 
 ### Green
 
 - Write the smallest production change that satisfies the behavior through the selected seam.
-- Run the narrow test, then the adjacent suite. Keep unrelated behavior unchanged.
+- Run the driving test, then the adjacent suite. Keep unrelated behavior unchanged.
 
 ### Refactor
 
@@ -61,18 +67,18 @@ Prefer state and returned outcomes over interaction assertions. Verify an intera
 
 Render the component, locate controls as a user does, perform user actions, and assert visible or accessible outcomes. The DOM/accessibility surface is the public seam. Calling handlers, hooks, controllers, or component methods directly bypasses UI behavior and can miss disabled, hidden, wiring, focus, and validation failures.
 
-Use component or route integration tests for most UI logic. Use a small number of screenshot tests for visual layout and narrow DOM assertions for behavior.
+Prefer page/route integration tests with the real router, state, validation, and local backend. Use browser E2E for major user journeys. Use isolated component tests only when the component is a meaningful public surface, not as a unit-test substitute for every UI detail.
 
-## Spend E2E carefully
+## Use E2E for broad surfaces, not details
 
-E2E tests are valuable for critical journeys and failures that only appear across deployed boundaries, but they are slow, flaky, imprecise, and costly to maintain. Keep the set small. Cover permutations below the E2E layer, keep data ephemeral, and preserve logs, screenshots, traces, and relevant state for diagnosis.
+E2E tests are first-class acceptance evidence because they exercise the product as a user does. Keep their count small: one journey should cover a major capability across its real surface. Do not create an E2E test for every validation rule, state, or branch; put those permutations in broad integration tests. Keep data ephemeral and preserve logs, screenshots, traces, and relevant state for diagnosis.
 
 See [REFERENCE.md](REFERENCE.md) for seam selection, test-level tradeoffs, mock exceptions, and suite design. See [EXAMPLES.md](EXAMPLES.md) when reviewing tautologies, UI tests, or boundary doubles.
 
 ## Done means
 
-- Every new behavior was observed red before green.
+- Every bug has regression coverage and every feature has acceptance coverage, observed red before green.
 - Each test can fail under a plausible defect and uses an independent oracle.
-- Tests exercise public vertical seams with the highest practical fidelity.
+- The suite prefers broad integration/E2E seams; unit tests cover pure functions only.
 - Mock exceptions are documented and contract-covered.
-- Narrow, adjacent, and proportionate broader suites pass; unverified risks are stated explicitly.
+- Driving, adjacent, and proportionate broader suites pass; unverified risks are stated explicitly.

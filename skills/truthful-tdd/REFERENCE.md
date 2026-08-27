@@ -12,22 +12,31 @@ An empty test is resilient but has no fidelity. A full-system test can have high
 
 | Behavior | Preferred seam | Typical test |
 | --- | --- | --- |
-| Pure domain rule | Exported domain operation | In-process behavior test |
+| Pure domain rule | Pure exported function | Unit test |
 | Persistence workflow | Service/API plus ephemeral real database | Integration test |
 | HTTP contract | Real route, serialization, middleware, and database | Route integration test |
 | UI behavior | Rendered DOM and user events | Component/route integration test |
 | External service adapter | Owned adapter | Contract test against sandbox, hermetic service, or owner fake |
 | Cross-system critical journey | User-visible deployed entry point | Focused E2E test |
 
-Do not split a vertical behavior into mocked layer tests merely to call them units. Keep pure computation in a functional core when that makes important rules cheap to exercise, then cover the imperative shell at its real integration seam.
+Do not split a vertical behavior into mocked layer tests merely to call them units. Unit-test only the functional core: deterministic functions whose result depends solely on explicit inputs. Cover services, orchestrators, repositories, framework code, and the imperative shell through integration or E2E seams with real dependencies.
+
+## Meet obligations without test spam
+
+- For a **feature**, add one acceptance journey for its primary capability. Add another only when a distinct permission, failure, platform, or cross-system path carries material risk.
+- For a **bug**, add the broadest stable regression that would have caught it before release. It must fail on the unfixed code.
+- Prefer adding a clear case or assertion to an existing journey over creating a new near-duplicate test.
+- Keep one coherent journey per test, but let that journey cross UI, API, policy, persistence, and retrieval when those layers form one product surface.
+- Put input matrices and edge permutations in integration tests. Keep E2E focused on representative success and important failure classes.
+- Delete or consolidate tests made redundant by stronger broad coverage when no unique risk would be lost.
 
 ## Balance the suite with SMURF
 
-Evaluate candidate coverage by **Speed, Maintainability, Utilization, Reliability, and Fidelity**. The test pyramid is a rough cost heuristic, not a quota. Prefer the smallest test that exposes the risk while retaining the required fidelity.
+Evaluate candidate coverage by **Speed, Maintainability, Utilization, Reliability, and Fidelity**. The test pyramid is a rough cost heuristic, not a quota. This suite deliberately favors fidelity: choose the broadest stable integration or E2E seam that covers the capability without making failures opaque.
 
-- Small tests dominate fast feedback and precise diagnosis.
-- Integration tests prove contracts between real parts and should carry most boundary permutations.
-- E2E tests prove a few critical journeys in near-production conditions.
+- Pure-function unit tests provide fast feedback for dense deterministic logic.
+- Integration tests prove contracts between real parts and carry most boundary permutations.
+- E2E tests prove a small number of large product surfaces in near-production conditions.
 - Coverage percentage is evidence of execution, not evidence of useful assertions or risk reduction.
 
 ## Mocking decision record
@@ -82,7 +91,7 @@ Use non-default values and distinct values for multiple inputs. Include boundari
 
 ## UI strategy
 
-1. Render the smallest component or route that owns the user behavior.
+1. Prefer the page or route that represents the user capability; use a smaller component only when it is itself a reusable public surface.
 2. Provide real state, router, validation, and local services when they can run hermetically.
 3. Query by role, accessible name, label, or visible text rather than implementation selectors.
 4. Act with user-level events and realistic event sequences.
@@ -90,16 +99,16 @@ Use non-default values and distinct values for multiple inputs. Include boundari
 
 Snapshots are broad change detectors unless the visual/content contract truly requires the whole snapshot and a human reviews the change. Prefer narrow DOM assertions for behavior and a deliberately small visual suite for layout.
 
-## E2E admission test
+## E2E portfolio
 
-Add an E2E test only when all are true:
+Keep an E2E test when all are true:
 
-- The behavior is important enough to pay ongoing maintenance cost.
-- A smaller test cannot reliably expose the cross-boundary risk.
-- The scenario has isolated, ephemeral data and a stable public interface.
+- It proves a major user capability or an important cross-system regression.
+- It crosses a broad, stable public surface rather than checking an incidental detail.
+- The scenario has isolated, ephemeral data.
 - Failure captures enough evidence to diagnose the responsible boundary.
 
-Use one journey per important success class and important error class, not every input permutation. Move logic and edge cases to cheaper integration/component tests.
+Use one journey per major success class and materially different error class, not every input permutation. Let integration tests cover variants and localize failures. Consolidate overlapping E2E journeys instead of allowing the suite to grow by accumulation.
 
 ## Source basis
 
