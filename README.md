@@ -57,6 +57,16 @@ discipline, and real-interface observation.
 
 See [`skills/animation/SKILL.md`](skills/animation/SKILL.md).
 
+### Infrastructure Autopilot
+
+Runs a persistent 15-minute infrastructure control loop with explicit merge
+and production authority. It discovers and builds monitors, responds to
+outages through bounded runbooks, improves performance, cost, SQL, capacity,
+and alert quality through measured experiments, and keeps a GitHub issue plus
+machine ledger as its audit trail.
+
+See [`skills/infrastructure-autopilot/SKILL.md`](skills/infrastructure-autopilot/SKILL.md).
+
 ## Install
 
 Copy the skill directory into the skills folder used by your agent:
@@ -68,6 +78,7 @@ cp -R pierre-skills/skills/truthful-tdd ~/.agents/skills/
 cp -R pierre-skills/skills/test-suite-auditor ~/.agents/skills/
 cp -R pierre-skills/skills/design ~/.agents/skills/
 cp -R pierre-skills/skills/animation ~/.agents/skills/
+cp -R pierre-skills/skills/infrastructure-autopilot ~/.agents/skills/
 ```
 
 For Codex installations that use `$CODEX_HOME/skills`, copy it there instead:
@@ -78,6 +89,7 @@ cp -R pierre-skills/skills/truthful-tdd "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/test-suite-auditor "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/design "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/animation "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/infrastructure-autopilot "$CODEX_HOME/skills/"
 ```
 
 Restart the agent or begin a new session after installation so it refreshes its
