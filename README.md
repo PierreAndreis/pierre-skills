@@ -59,6 +59,16 @@ discipline, and real-interface observation.
 
 See [`skills/animation/SKILL.md`](skills/animation/SKILL.md).
 
+### Shaders
+
+Builds, integrates, debugs, tests, and optimizes WebGPU shaders with vgpu,
+typed WGSL modules, browser canvases, and headless Node rendering. Eight routed
+playbooks cover effects, geometry, compute, multipass textures, debugging,
+performance, setup, and product integration. Bundled tools inventory an
+existing vgpu project and enforce deterministic raw-pixel sanity gates.
+
+See [`skills/shaders/SKILL.md`](skills/shaders/SKILL.md).
+
 ### Infrastructure Autopilot
 
 Runs a persistent 15-minute infrastructure control loop with explicit merge
@@ -83,6 +93,7 @@ cp -R pierre-skills/skills/truthful-tdd ~/.agents/skills/
 cp -R pierre-skills/skills/test-suite-auditor ~/.agents/skills/
 cp -R pierre-skills/skills/design ~/.agents/skills/
 cp -R pierre-skills/skills/animation ~/.agents/skills/
+cp -R pierre-skills/skills/shaders ~/.agents/skills/
 cp -R pierre-skills/skills/infrastructure-autopilot ~/.agents/skills/
 ```
 
@@ -94,6 +105,7 @@ cp -R pierre-skills/skills/truthful-tdd "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/test-suite-auditor "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/design "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/animation "$CODEX_HOME/skills/"
+cp -R pierre-skills/skills/shaders "$CODEX_HOME/skills/"
 cp -R pierre-skills/skills/infrastructure-autopilot "$CODEX_HOME/skills/"
 ```
 

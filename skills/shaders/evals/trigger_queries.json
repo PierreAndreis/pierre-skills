@@ -1,0 +1,22 @@
+[
+  {"query":"build a WebGPU aurora background with vgpu","should_trigger":true},
+  {"query":"this WGSL raymarch is black; debug it from pixels","should_trigger":true},
+  {"query":"add a headless test for our fragment shader","should_trigger":true},
+  {"query":"turn this particle update into a compute shader","should_trigger":true},
+  {"query":"make a ping-pong fluid simulation using vgpu","should_trigger":true},
+  {"query":"optimize the GPU frame time of this procedural effect","should_trigger":true},
+  {"query":"add depth and post-processing to this WebGPU scene","should_trigger":true},
+  {"query":"our shader stretches on mobile and ignores reduced motion","should_trigger":true},
+  {"query":"write typed WGSL modules and configure them in Next.js","should_trigger":true},
+  {"query":"the texture samples correctly on one GPU but not CI","should_trigger":true},
+  {"query":"make this CSS gradient more subtle","should_trigger":false},
+  {"query":"optimize a CUDA kernel in Python","should_trigger":false},
+  {"query":"design the typography for this landing page","should_trigger":false},
+  {"query":"explain what a graphics card does","should_trigger":false},
+  {"query":"compress this rendered PNG","should_trigger":false},
+  {"query":"animate this button with CSS transitions","should_trigger":false},
+  {"query":"fix the z-index of this modal","should_trigger":false},
+  {"query":"write a GLSL shader for an existing OpenGL-only engine","should_trigger":false},
+  {"query":"monitor our GPU cloud bill","should_trigger":false},
+  {"query":"add a static SVG icon","should_trigger":false}
+]

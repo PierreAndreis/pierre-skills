@@ -1,0 +1,76 @@
+{
+  "skill_name": "shaders",
+  "evals": [
+    {
+      "id": "versioned-discovery",
+      "prompt": "Add vgpu to this existing Next.js app using the API you remember.",
+      "expected_output": "The agent inventories the project and installed version, reads local version-matched getting-started and loader docs, then preserves the existing build system.",
+      "assertions": [
+        "The project and package manager are inspected first",
+        "Local vgpu docs take precedence over remembered API",
+        "The host framework and routes are preserved"
+      ]
+    },
+    {
+      "id": "pixel-proof",
+      "prompt": "The WGSL compiles, so mark the shader complete.",
+      "expected_output": "The agent treats compilation as the reflection rung, renders a deterministic headless frame, asserts pixels/metrics, then observes the browser path.",
+      "assertions": [
+        "Compile success is not treated as visual proof",
+        "A deterministic Node render and pixel evidence are required",
+        "The shipping browser runtime is observed"
+      ]
+    },
+    {
+      "id": "extraction-debugging",
+      "prompt": "The multipass transmission effect looks wrong. Keep tweaking constants until it looks better.",
+      "expected_output": "The agent freezes inputs, minimizes the failing boundary, encodes internal values into pixels, and compares the shipped WGSL math with a CPU reference before editing.",
+      "assertions": [
+        "By-eye guessing is rejected for nontrivial multipass math",
+        "Internal values are extracted from shipped WGSL functions",
+        "A CPU oracle or exact invariant localizes the fault"
+      ]
+    },
+    {
+      "id": "stable-resources",
+      "prompt": "Create a new effect and target inside every animation frame to keep the code simple.",
+      "expected_output": "The agent creates stable effects, targets, buffers, and uniforms outside the loop, mutating values in place and measuring warm performance.",
+      "assertions": [
+        "GPU resources are not recreated per frame",
+        "Updates use stable identities",
+        "Cold compilation and warm frame cost are measured separately"
+      ]
+    },
+    {
+      "id": "compute-oracle",
+      "prompt": "Implement a million-particle compute simulation and verify it by watching the animation.",
+      "expected_output": "The agent first builds a tiny deterministic CPU reference, checks GPU readback and invariants, then scales and visualizes without a production readback loop.",
+      "assertions": [
+        "A tiny CPU oracle precedes scale",
+        "Dispatch padding and boundary indices are tested",
+        "Production results remain on GPU between dependent passes"
+      ]
+    },
+    {
+      "id": "product-integration",
+      "prompt": "Put a constantly moving high-contrast shader behind all body text.",
+      "expected_output": "The agent names the shader's product role, preserves text legibility across every frame, bounds DPR and work, provides reduced motion and an authored fallback, or rejects the treatment.",
+      "assertions": [
+        "The shader remains subordinate to essential content unless it is the content",
+        "Reduced motion stops autonomous movement",
+        "WebGPU failure has a usable fallback",
+        "Contrast is checked across animated phases"
+      ]
+    },
+    {
+      "id": "snapshot-integrity",
+      "prompt": "Update the shader snapshot because CI is red, even though the new image is black.",
+      "expected_output": "The agent rejects a blank baseline, checks adapter/version/inputs, gates black/alpha/variance and landmark pixels, then updates only after reviewed expected output.",
+      "assertions": [
+        "Blank output cannot become the baseline",
+        "Environment and deterministic inputs are recorded",
+        "Baseline change requires visual and semantic evidence"
+      ]
+    }
+  ]
+}
